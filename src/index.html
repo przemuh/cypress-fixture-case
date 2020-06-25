@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cypress App</title>
+  </head>
+  <body>
+    <div id="main">Loading...</div>
+    <script>
+      const mainEl = document.querySelector("#main");
+
+      const req = new XMLHttpRequest();
+      req.open("GET", "/api/endpoint", true);
+      req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+          const msg = req.status == 200 ? req.responseText : "Error";
+          mainEl.innerHTML = msg;
+        }
+      };
+      req.send(null);
+    </script>
+  </body>
+</html>
